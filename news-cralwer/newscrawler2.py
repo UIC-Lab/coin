@@ -1,7 +1,6 @@
 """
 한겨례 신문
 "블록체인" 검색어에 대한 기사 크롤링
-코드 출처 : http://yoonpunk.tistory.com/6
 """
 
 import sys
@@ -37,13 +36,13 @@ def get_text(URL, output_file):
 
 
 def main(argv):
-    keyword = "블록체인"
+    keyword = "비트코인"
     page_num = int(100)
-    until_date = "2018.05.02"
+    until_date = "2018.05.09"
     output_file_name = "ret2.txt"
     target_URL = TARGET_URL_BEFORE_KEWORD + quote(keyword) \
                  + TARGET_URL_BEFORE_UNTIL_DATE + until_date + TARGET_URL_REST
-    output_file = open(output_file_name, 'w')
+    output_file = open(output_file_name, 'w',encoding='utf-8')
     get_link_from_news_title(page_num, target_URL, output_file)
     output_file.close()
 
