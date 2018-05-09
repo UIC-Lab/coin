@@ -1,7 +1,6 @@
 """
 동아일보 뉴스 기사 크롤링
 "블록체인" 검색어에 대한 기사
-출처 : http://yoonpunk.tistory.com/6
 """
 
 import sys
@@ -42,10 +41,7 @@ def get_text(URL, output_file):
 
 # 메인함수
 def main(argv):
-    #if len(argv) != 4:
-        #print("python [모듈이름] [키워드] [가져올 페이지 숫자] [결과 파일명]")
-        #return
-    keyword = "블록체인"
+    keyword = "비트코인"
     page_num = int(100)
     output_file_name = "ret1.txt"
     target_URL = TARGET_URL_BEFORE_PAGE_NUM + TARGET_URL_BEFORE_KEWORD \
