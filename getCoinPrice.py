@@ -1,5 +1,5 @@
 import coinmarketcap
-
+import os
 # Name of Coins
 coin_name = ['digibyte', 'loopring', 'digixdao', 'mixin']
 market = coinmarketcap.Market()
@@ -8,37 +8,37 @@ market = coinmarketcap.Market()
 increaseCoin = 0
 decreaseCoin = 0
 
-for i in range(4):
+for Name in coin_name:
     coin_info= 0
-    coin = market.ticker(coin_name[i], limit=3, convert="KRW")
+    coin = market.ticker(Name, limit=3, convert="KRW")
     coin_dict = coin[0]
     coin_price = float(coin_dict['price_krw'])
-    with open('./coin_currency/'+coin_name[i]+'_price.txt', 'w+') as coin_info :
-        # if not exist the coin's price
-        preCoinPrice = coin_info.readable()
-        if preCoinPrice is None:
-            coin_info.write(coin_price + '\n')
-            coin_info.close()
-            continue;
 
-        # Already exist the coin's price
-        else:
+    if os.path.isfile('./coin_currency/'+Name+'_price.txt'):
+
+            coin_info= open('./coin_currency/'+Name+'_price.txt', 'rt')
+            preCoinPrice = coin_info.readline()
             preCoinPrice = float(preCoinPrice)
-            # if old one is expensive than present one
+
             if preCoinPrice > coin_price:
                 decreaseCoin+=1
 
-            # if old one is not expensive than present one
             elif preCoinPrice < coin_price:
                 increaseCoin+=1
 
-            # As a result
+            coin_info = open('./coin_currency/'+Name+'_price.txt', 'wt')
             coin_info.write(str(coin_price)+'\n')
             coin_info.close()
 
-if increaseCoin > decreaseCoin:
-    print("UP")
-elif increaseCoin < decreaseCoin:
-    print("DOWN")
-elif increaseCoin == decreaseCoin:
+    else :
+            coin_info= open('./coin_currency/'+Name+'_price.txt', 'wt')
+            coin_info.write(str(coin_price)+'\n')
+            coin_info.close()
+
+if increaseCoin == 0 and decreaseCoin == 0 :
     print("EVEN")
+else :
+    if increaseCoin > decreaseCoin :
+        print("UP")
+    elif increaseCoin < decreaseCoin :
+        print("DOWN")
