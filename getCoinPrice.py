@@ -1,40 +1,54 @@
 import coinmarketcap
+from pymarketcap import Pymarketcap
 import os
 # Name of Coins
-coin_name = ['digibyte', 'loopring', 'digixdao', 'mixin']
-market = coinmarketcap.Market()
+market = Pymarketcap()
+
+#Get the KRW Price of Coins
+cur = market.ticker(convert="KRW")
 
 # init Coin's price of up&down of price
 increaseCoin = 0
 decreaseCoin = 0
 
-for Name in coin_name:
-    coin_info= 0
-    coin = market.ticker(Name, limit=3, convert="KRW")
-    coin_dict = coin[0]
-    coin_price = float(coin_dict['price_krw'])
 
+#Rank from 50 to 100
+for i in range(50, 100):
+
+    #Convert array to Dict to get which I want
+    CurInfo = cur[i]
+
+    #Get the price and name of the coin which is necessary
+    Price = float(CurInfo['price_krw'])
+    Name = CurInfo['name']
+
+    #if file is exist. for avoid error whether file is exist or not
     if os.path.isfile('./coin_currency/'+Name+'_price.txt'):
 
-            coin_info= open('./coin_currency/'+Name+'_price.txt', 'rt')
-            preCoinPrice = coin_info.readline()
-            preCoinPrice = float(preCoinPrice)
+            #get the old one from file
+            PreInfo= open('./coin_currency/'+Name+'_price.txt', 'rt')
+            PrePrice = PreInfo.readline()
+            PrePrice = float(PrePrice)
 
-            if preCoinPrice > coin_price:
+
+            #compare the price
+            if PrePrice > Price:
                 decreaseCoin+=1
 
-            elif preCoinPrice < coin_price:
+            elif PrePrice < Price:
                 increaseCoin+=1
 
-            coin_info = open('./coin_currency/'+Name+'_price.txt', 'wt')
-            coin_info.write(str(coin_price)+'\n')
-            coin_info.close()
-
+            #write down the new price to file
+            PreInfo = open('./coin_currency/'+Name+'_price.txt', 'wt')
+            PreInfo.write(str(Price)+'\n')
+            PreInfo.close()
     else :
-            coin_info= open('./coin_currency/'+Name+'_price.txt', 'wt')
-            coin_info.write(str(coin_price)+'\n')
-            coin_info.close()
+            #For the first execution which don't have coin's priceInfo
+            PreInfo = open('./coin_currency/'+Name+'_price.txt', 'wt')
+            PreInfo.write(str(Price)+'\n')
+            PreInfo.close()
 
+#Compare the number of the coin
 if increaseCoin == 0 and decreaseCoin == 0 :
     print("EVEN")
 else :
