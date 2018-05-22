@@ -74,8 +74,8 @@ def input_news():
     for i in input:
         try:
             a = tokenize(i)
-            up = tokenize('상승')
-            down = tokenize('하락')
+            up = tokenize('UP')
+            down = tokenize('DOWN')
             up_result = wv_model_coin.wv.similarity(a[0], up[0])
             down_result = wv_model_coin.wv.similarity(a[0], down[0])
             up_sum = up_sum + up_result
@@ -85,8 +85,8 @@ def input_news():
 
     print(up_sum, down_sum)
     if (up_sum > down_sum):
-        result = '상승'
+        result = 'UP'
     else:
-        result = '하락'
+        result = 'DOWN'
 
     return result
