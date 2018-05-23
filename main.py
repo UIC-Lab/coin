@@ -5,8 +5,8 @@ import sys
 import os
 
 #initialize the each module
-AltCoin_result = getCoinPrice.getCoinPrice()
 breakingnews_crawler.main(sys.argv)
+AltCoin_result = getCoinPrice.getCoinPrice()
 Word2vec_result = coin_word2vec.input_news()
 
 
