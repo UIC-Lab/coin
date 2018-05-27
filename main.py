@@ -1,32 +1,56 @@
 import BreakingNews_Crawler as Crawl
 import getCoinPrice as getCoin
-import Input_News as IN
+#import Input_News as IN
 import sys
 import os
-from PyQt5 import *
+from PyQt5.QtWidgets import *
 
-Crawl.main(sys.argv)
-Coin_result = getCoin.getCoinResult()
-News_Result = IN.input_news()
-
-if Coin_result == 'UP':
-    Coin_rate = 0.4
-else:
-    Coin_rate = 0.0
+class MyTest(QMainWindow):
 
 
-if News_Result == 'UP':
-    News_rate = 0.6
-else:
-    News_rate = 0.0
 
-Final_rate = Coin_rate + News_rate
 
-if Final_rate == 1.0:
-    print("Highly Recommanded for your investigation")
-elif Final_rate == 0.6 :
-    print("Recommand for your investigation")
-elif Final_rate == 0.4 :
-    print("Not so much recommand for your investigation")
-else :
-    print("Never do that!")
+    def __init__(self):
+        super().__init__()
+        btn1 = QPushButton("Button 1", self)
+        btn1.move(30, 50)
+
+        btn1.clicked.connect(self.button1_clicked)
+        self.statusbar = self.statusBar()
+        self.setGeometry(300, 300, 290, 150)
+        self.setWindowTitle('Event sender')
+        self.show()
+
+    def button1_clicked(self):
+        CoinResult = getCoin.getCoinResult(self)
+        Crawl.main(sys.argv)
+        NewsResult = 'UP'
+        #NewsResult = IN.input_news()
+
+        if CoinResult == 'UP':
+            Coinrate = 0.4
+        else:
+            Coinrate = 0.0
+
+        if NewsResult == 'UP':
+            Newsrate = 0.6
+        else:
+            Newsrate = 0.0
+
+        Finalrate = Coinrate + Newsrate
+        if Finalrate == 1.0:
+            QMessageBox.about(self, "Coin Predicting","적극추천")
+
+        elif Finalrate == 0.6 :
+            QMessageBox.about(self, "Coin Predicting","추천")
+
+        elif Finalrate == 0.4 :
+            QMessageBox.about(self, "Coin Predicting","비추천")
+
+        else :
+            QMessageBox.about(self, "Coin Predicting","적극비추천")
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = MyTest()
+    sys.exit(app.exec_())

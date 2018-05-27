@@ -106,7 +106,7 @@ def get_text_news3(URL, output_file):
     source_code_from_url = urllib.request.urlopen(URL)
     soup = BeautifulSoup(source_code_from_url, 'lxml', from_encoding='utf-8')
     content_of_article = soup.select('div.article_txt')
-    string_item = str(item.find_all(text=True))
+    string_item = ''
     time_of_article = soup.select('div.title_foot > span.date01')
     temp = str(time_of_article[0])
     day = temp[32:34]
