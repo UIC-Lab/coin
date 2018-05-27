@@ -1,6 +1,6 @@
 import BreakingNews_Crawler as Crawl
 import getCoinPrice as getCoin
-#import Input_News as IN
+import Input_News as IN
 import sys
 import os
 from PyQt5.QtWidgets import *
@@ -24,8 +24,7 @@ class MyTest(QMainWindow):
     def button1_clicked(self):
         CoinResult = getCoin.getCoinResult(self)
         Crawl.main(sys.argv)
-        NewsResult = 'UP'
-        #NewsResult = IN.input_news()
+        NewsResult = IN.input_news()
 
         if CoinResult == 'UP':
             Coinrate = 0.4
