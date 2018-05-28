@@ -38,16 +38,16 @@ class MyTest(QMainWindow):
 
         Finalrate = Coinrate + Newsrate
         if Finalrate == 1.0:
-            QMessageBox.about(self, "Coin Predicting","적극추천")
+            QMessageBox.about(self, "Coin Predicting","매우상승")
 
         elif Finalrate == 0.6 :
-            QMessageBox.about(self, "Coin Predicting","추천")
+            QMessageBox.about(self, "Coin Predicting","조금상승")
 
         elif Finalrate == 0.4 :
-            QMessageBox.about(self, "Coin Predicting","비추천")
+            QMessageBox.about(self, "Coin Predicting","조금하락")
 
         else :
-            QMessageBox.about(self, "Coin Predicting","적극비추천")
+            QMessageBox.about(self, "Coin Predicting","매우하락")
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
