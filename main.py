@@ -12,13 +12,13 @@ class MyTest(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        btn1 = QPushButton("Button 1", self)
+        btn1 = QPushButton("투자를 해야할까요?", self)
         btn1.move(30, 50)
 
         btn1.clicked.connect(self.button1_clicked)
         self.statusbar = self.statusBar()
         self.setGeometry(300, 300, 290, 150)
-        self.setWindowTitle('Event sender')
+        self.setWindowTitle('Coin Predictor')
         self.show()
 
     def button1_clicked(self):
