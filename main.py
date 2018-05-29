@@ -26,3 +26,6 @@ elif Finalrate == 0.4 :
     print("HALF SELLING")
 else:
     print("FULL SELLING")
+
+
+print(Finalrate)
