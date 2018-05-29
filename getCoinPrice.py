@@ -1,10 +1,9 @@
-import coinmarketcap
-from pymarketcap import Pymarketcap
+from coinmarketcap import Market
+
 import os
 # Name of Coins
-def getCoinResult(self):
-    market = Pymarketcap()
-
+def getCoinResult():
+    market = Market()
     #Get the KRW Price of Coins
     cur = market.ticker(convert="KRW")
 

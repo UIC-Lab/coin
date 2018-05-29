@@ -3,7 +3,7 @@ import getCoinPrice as getCoin
 import Input_News as IN
 import sys
 import os
-CoinResult = getCoin.getCoinResult(self)
+CoinResult = getCoin.getCoinResult()
 Crawl.main(sys.argv)
 NewsResult = IN.input_news()
 
@@ -12,7 +12,7 @@ if CoinResult == 'UP' :
 else:
     Coinrate = 0.0
 
-if NEwsResult == 'UP':
+if NewsResult == 'UP':
     Newsrate = 0.6
 else:
     Newsrate = 0.0

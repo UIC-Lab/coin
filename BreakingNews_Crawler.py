@@ -1,9 +1,12 @@
+# -*- coding: utf-8 -*- 
+
 """
 TOKENPOST 속보 크롤링 하기
 URL = "https://tokenpost.kr/breaking"
 time 함수 출처 : http://yujuwon.tistory.com/entry/%ED%98%84%EC%9E%AC-%EB%82%A0%EC%A7%9C-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0
 코드 출처 : http://yoonpunk.tistory.com/6
 """
+
 
 import sys
 from bs4 import BeautifulSoup
