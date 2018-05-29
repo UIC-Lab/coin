@@ -51,9 +51,10 @@ def getCoinResult(self):
 
     #Compare the number of the coin
     if increaseCoin == 0 and decreaseCoin == 0 :
-        print("EVEN")
+        result = "EVEN"
     else :
         if increaseCoin > decreaseCoin :
-            print("UP")
+            result = "UP"
         elif increaseCoin < decreaseCoin :
-            print("DOWN")
+            result = "DOWN"
+    return result

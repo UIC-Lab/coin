@@ -1,3 +1,5 @@
+# -*- coding: utf8 -*-
+
 """
 TOKENPOST 속보 크롤링 하기
 URL = "https://tokenpost.kr/breaking"
