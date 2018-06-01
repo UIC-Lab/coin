@@ -1,6 +1,6 @@
 import BreakingNews_Crawler as Crawl
 import getCoinPrice as getCoin
-import temp_word as IN
+import Input_News as IN
 import sys
 import os
 from PyQt5.QtWidgets import *
