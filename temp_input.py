@@ -55,7 +55,6 @@ content = [preprocessing(open(Train_PATH + 'train.txt').read())]
 sentences = [tokenize(d) for d in content]
 
 wv_model_coin = Word2Vec(sentences, size=100, window = 8, min_count=10, workers=4, iter=100, sg=1)
-#100차원 벡터, 주변단어 2개 참조, 출연빈도 20번이상, CPU 쿼드코어, 100번 반복, CBOW, Skip-Gram중 후자
 wv_model_coin.save(SAVE_PATH + 'train_wv')
 
 wv_model_coin = Word2Vec.load(SAVE_PATH + 'train_wv')
