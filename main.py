@@ -1,6 +1,7 @@
 import BreakingNews_Crawler as Crawl
 import getCoinPrice as getCoin
 import Input_News as IN
+import Ratio as Rt
 import sys
 import os
 from PyQt5.QtWidgets import *
@@ -22,32 +23,31 @@ class MyTest(QMainWindow):
         self.show()
 
     def button1_clicked(self):
-        CoinResult = getCoin.getCoinResult(self)
+        CoinResult = Rt.getRatio()
         Crawl.main(sys.argv)
         NewsResult = IN.input_news()
 
-        if CoinResult == 'UP':
-            Coinrate = 0.4
-        else:
-            Coinrate = 0.0
 
         if NewsResult == 'UP':
-            Newsrate = 0.6
+            if CoinResult >= 2.0:
+                QMessageBox.about(self, "Coin Predicting", "4%이상 상승")
+            elif CoinResult < 2.0 and CoinResult >=0.0:
+                QMessageBox.about(self, "Coin PRedicting", "2~4%이상 상승")
+            elif CoinResult < 0.0 and CoinResult >= -5.0:
+                QMessageBox.about(self, "Coin Predicting", "-2~2% 현상태 유지")
+            else:
+                QMessageBox.about(self, "Coin Predicting", "-2%이상 하락")
         else:
-            Newsrate = 0.0
+            if CoinResult >=0.0 and CoinResult < 5.0:
+                QMessageBox.about(self, "Coin Predicting", "-2~2% 현 상태 유지")
+            elif CoinResult >= 5.0 :
+                QMessageBox.about(self, "Coin Predicting", "2%이상 상승")
+            elif CoinResult >= -2.0 and CoinResult < 0.0:
+                QMessageBox.about(self, "Coin Predicting", "2~4%이상 하락")
+            else:
+                QMessageBox.about(self, "Coin Predicting", "4% 이상 하락")
 
-        Finalrate = Coinrate + Newsrate
-        if Finalrate == 1.0:
-            QMessageBox.about(self, "Coin Predicting","매우상승")
 
-        elif Finalrate == 0.6 :
-            QMessageBox.about(self, "Coin Predicting","상승")
-
-        elif Finalrate == 0.4 :
-            QMessageBox.about(self, "Coin Predicting","조금하락")
-
-        else :
-            QMessageBox.about(self, "Coin Predicting","매우하락")
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
