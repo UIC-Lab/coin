@@ -19,13 +19,11 @@ def getRatio():
 
             cur_ratio = ((Price-PrePrice)/Price)*100
             sum+=cur_ratio
-            print(cur_ratio)
 
             PreInfo = open('./coin_currency/'+Name+'_price.txt', 'wt')
             PreInfo.write(str(Price)+'\n')
             PreInfo.close()
         else:
-            print("0")
             PreInfo = open('./coin_currency/'+Name+'_price.txt', 'wt')
             PreInfo.write(str(Price)+'\n')
             PreInfo.close()
